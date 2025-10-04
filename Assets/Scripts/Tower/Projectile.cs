@@ -1,3 +1,5 @@
+using Enemies;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Tower
@@ -34,8 +36,19 @@ namespace Tower
                 enemy.position,
                 bulletSpeed * Time.deltaTime);
 
+
             if (timer >= bulletLifeTime)
             {
+                Destroy(gameObject);
+            }
+        }
+
+        void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                Debug.Log("enemy buldum kemal abi");
+                enemy.gameObject.GetComponent<EnemyBase>().DealDamage(bulletDamage);
                 Destroy(gameObject);
             }
         }

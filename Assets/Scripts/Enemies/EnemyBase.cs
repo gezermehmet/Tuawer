@@ -1,4 +1,5 @@
 using System.Collections;
+using Managers;
 using Tower;
 using UnityEngine;
 
@@ -60,5 +61,21 @@ namespace Enemies
                 isTouchingTower = true;
             }
         }
+        
+        public void DealDamage(float damage)
+        {
+            hp -= damage;
+            if (hp <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
+            EnemySpawner.Instance.DecreaseMaxEnemyCount();
+        }
+
     }
 }

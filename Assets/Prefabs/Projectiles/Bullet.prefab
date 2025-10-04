@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   bulletSpeed: 1
-  bulletDamage: 2
+  bulletDamage: 50
   timer: 0
   bulletLifeTime: 5
 --- !u!50 &-675546467209705578
