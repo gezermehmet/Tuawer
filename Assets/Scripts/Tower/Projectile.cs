@@ -29,13 +29,13 @@ namespace Tower
 
         void Target()
         {
-            if (enemy == null) return;
-
+            if (enemy == null) {Destroy(gameObject); return;}
+            
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 enemy.position,
                 bulletSpeed * Time.deltaTime);
-
+            
 
             if (timer >= bulletLifeTime)
             {
@@ -45,7 +45,7 @@ namespace Tower
 
         void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Enemy"))
+            if (other.gameObject.CompareTag("Enemy") && enemy !=null)
             {
                 Debug.Log("enemy buldum kemal abi");
                 enemy.gameObject.GetComponent<EnemyBase>().DealDamage(bulletDamage);
