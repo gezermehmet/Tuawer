@@ -1,4 +1,5 @@
 using System;
+using Managers;
 using UnityEngine;
 
 namespace Tower
@@ -14,9 +15,10 @@ namespace Tower
         public float criticalDamage = 10f;
         public float hp = 100f;
         public float maxHp = 100f;
-        public float xpBar = 0f;
+        public float maxXp = 100f;
         public float currentXp = 0f;
         public int level = 1;
+        public float hpIncrease = 5f;
 
         [Header("Bullet")] public GameObject bulletPrefab;
         public float bulletDamage = 1f;
@@ -94,8 +96,8 @@ namespace Tower
         {
             hp -= damage;
 
-            UIManager.instance.UpdateHpBar(hp/maxHp);
-            
+            UIManager.İnstance.UpdateHpBar(hp / maxHp);
+
             if (hp <= 0)
             {
                 Destroy(gameObject);
@@ -108,12 +110,28 @@ namespace Tower
         {
             currentXp += exp;
 
-            if (currentXp >= xpBar)
+            UIManager.İnstance.UpdateExpBar(currentXp / maxXp);
+
+            if (currentXp >= maxXp)
             {
                 level++;
                 currentXp = 0;
-                xpBar += (level - 1) * 5;
+                maxXp += (level - 1) * 5;
+
+                UIManager.İnstance.UpdateExpBar(currentXp);
             }
+        }
+
+
+        public float GetHp()
+        {
+            return maxHp;
+        }
+
+        public float SetHp(float newHp)
+        {
+            maxHp = newHp;
+            return maxHp;
         }
     }
 }

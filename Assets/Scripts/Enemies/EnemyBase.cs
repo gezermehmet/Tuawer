@@ -18,7 +18,7 @@ namespace Enemies
         public TowerController tower;
         private Rigidbody2D rb;
         private bool isTouchingTower = false;
-        
+
 
         public void Awake()
         {
@@ -62,7 +62,7 @@ namespace Enemies
                 isTouchingTower = true;
             }
         }
-        
+
         public void DealDamage(float damage)
         {
             hp -= damage;
@@ -78,6 +78,5 @@ namespace Enemies
             EnemySpawner.Instance.DecreaseMaxEnemyCount();
             tower.ExpEvent(exp);
         }
-
     }
 }

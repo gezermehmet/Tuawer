@@ -1,18 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
-public class TowerStats : MonoBehaviour
+namespace Tower
 {
-    // Start is called before the first frame update
-    void Start()
+    public class TowerStats : MonoBehaviour
     {
-        
-    }
+        private TowerController _towerController;
+        [SerializeField] private float towerHp;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+        private void Start()
+        {
+            towerHp = _towerController.GetHp();
+        }
+
+
+        public void IncreaseMaxHp(float amount)
+        {
+            towerHp += amount;
+            _towerController.SetHp(towerHp);
+        }
     }
 }
