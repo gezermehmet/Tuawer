@@ -11,6 +11,7 @@ namespace Enemies
         public float speed = 1f;
         public float damage = 1f;
         public float attackInterval = 3f;
+        public float exp = 1f;
 
         public GameObject target;
         private float _attackTimer;
@@ -75,6 +76,7 @@ namespace Enemies
         {
             Destroy(gameObject);
             EnemySpawner.Instance.DecreaseMaxEnemyCount();
+            tower.ExpEvent(exp);
         }
 
     }

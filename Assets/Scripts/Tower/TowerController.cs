@@ -13,6 +13,10 @@ namespace Tower
         public float criticalChance = 0.5f;
         public float criticalDamage = 10f;
         public float hp = 100f;
+        public float maxHp = 100f;
+        public float xpBar = 0f;
+        public float currentXp = 0f;
+        public int level = 1;
 
         [Header("Bullet")] public GameObject bulletPrefab;
         public float bulletDamage = 1f;
@@ -90,11 +94,25 @@ namespace Tower
         {
             hp -= damage;
 
+            UIManager.instance.UpdateHpBar(hp/maxHp);
+            
             if (hp <= 0)
             {
                 Destroy(gameObject);
                 Time.timeScale = 0f;
                 Debug.Log("Tower destroyed");
+            }
+        }
+
+        public void ExpEvent(float exp)
+        {
+            currentXp += exp;
+
+            if (currentXp >= xpBar)
+            {
+                level++;
+                currentXp = 0;
+                xpBar += (level - 1) * 5;
             }
         }
     }

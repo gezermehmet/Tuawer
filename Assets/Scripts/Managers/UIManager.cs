@@ -1,18 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemies;
+using Tower;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static UIManager instance;
+    public Slider expBar;
+    public Slider hpBar;
+    private TowerController _towerController;
+    private EnemyBase _enemyBase;
+
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateHpBar(float hpBarValue)
     {
-        
+        hpBar.value = hpBarValue;
+    }
+
+    public void UpdateExpBar()
+    {
+        expBar.value++;
     }
 }

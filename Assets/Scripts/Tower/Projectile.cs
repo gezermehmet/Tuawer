@@ -37,7 +37,7 @@ namespace Tower
                 bulletSpeed * Time.deltaTime);
             
 
-            if (timer >= bulletLifeTime)
+            if (timer >= bulletLifeTime )
             {
                 Destroy(gameObject);
             }
